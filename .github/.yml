@@ -1,0 +1,61 @@
+name: Node.js CI
+on:
+ push:
+branches:
+
+main
+
+pull_request:
+
+branches:
+
+main
+
+workflow_dispatch:
+
+schedule:
+
+cron: '0 *16* * *'
+
+jobs:
+
+build:
+
+runs-on: ubuntu-latest
+
+strategy:
+
+matrix:
+
+node-version: [20.x]
+
+env:
+
+SESSION_ID: PRABATH-MD~0nE0SDAY#tsjDZm0dCK771EXRDul6NpNCCt6-HoI3bZX65zoeDc0
+
+GITHUB_AUTH_TOKEN:  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
+BOT_NUMBER: +27635915524 
+
+steps:
+
+name: Checkout repository
+
+uses: actions/checkout@v3
+
+name: Set up Node.js
+
+uses: actions/setup-node@v3
+
+with:
+
+node-version: \${{ matrix.node-
+
+version }}
+
+name: Install dependencies
+
+run: npm install
+
+name: Start application
+
+run: npm start
